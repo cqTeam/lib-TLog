@@ -1,0 +1,3 @@
+include ':lib-tlog'
+include ':app'
+rootProject.name = "Lib-TLog"
