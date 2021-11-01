@@ -2,6 +2,36 @@
 日志框架
 ## 简介
 ### 功能
+- 日志定位
+- 展示该日志调用者的线程信息
+- 支持Json字符串格式化
+
+### 使用
+#### 在 Application 中配置
+```
+// 1. 创建日志配置器 TLogConfig
+val tlogConfig = TLogConfig.Builder()
+            .formatJson(true) // 是否格式化Json字符串，默认false
+            .showThreadInfo(true) // 是否展示线程信息，默认false
+            .tag("TLog") // 全局Log的tag
+            .setPackageNames("com.cqteam.tlog") // 配置需要定位的类的包名，一般使用AndroidManifest.xml中的package的值即可
+            .build()
+ // 2. 给日志添加配置
+ TLog.addConfig(tlogConfig)
+```
+
+#### 调用
+```
+TLog.i("测试") // 日志的
+TLog.i("测试","allTag")
+```
+
+#### 注意
+- 如果要进行日志定位，一定要调用`TLogConfig.Builder.setPackageNames`方法，该方法接收可变参数，即
+```
+setPackageNames("com.cqteam.app","com.cqteam.user","com.cqteam.center")
+```
+
 ### 日志结果
 ```
 2021-11-01 11:20:12.553 25075-25169/com.cqteam.tlog D/TLog: 日志内容
