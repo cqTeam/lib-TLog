@@ -1,6 +1,5 @@
 package com.cqteam.lib.tlog.handle
 
-import android.util.Log
 import com.cqteam.lib.tlog.claz.ClassUtils
 import com.cqteam.lib.tlog.json.JsonFactory
 import com.cqteam.lib.tlog.thread.ThreadFactory
@@ -17,34 +16,27 @@ class DefaultTLogHandle(
     private val isShowThreadInfo: Boolean,
 ): TLogHandle {
     override fun i(msg: String): String {
-        val stringBuffer = StringBuilder(ClassUtils.getClass())
-        if (isShowThreadInfo) stringBuffer.append("\n").append(ThreadFactory(Thread.currentThread()).printThreadInfo())
-        stringBuffer.append("\n").append("===========================================================start=======================================================================")
-        if (isFormatJson) stringBuffer.append("\n").append(JsonFactory(msg).printJson()) else stringBuffer.append("\n").append(msg)
-        stringBuffer.append("\n").append("============================================================end========================================================================")
-        return stringBuffer.toString()
+      return handle(msg)
     }
 
     override fun d(msg: String): String {
-        val stringBuffer = StringBuilder(ClassUtils.getClass())
-        if (isShowThreadInfo) stringBuffer.append("\n").append(ThreadFactory(Thread.currentThread()).printThreadInfo())
-        stringBuffer.append("\n").append("===========================================================start=======================================================================")
-        if (isFormatJson) stringBuffer.append("\n").append(JsonFactory(msg).printJson()) else stringBuffer.append("\n").append(msg)
-        stringBuffer.append("\n").append("============================================================end========================================================================")
-        return stringBuffer.toString()
+        return handle(msg)
     }
 
     override fun w(msg: String): String {
-        val stringBuffer = StringBuilder(ClassUtils.getClass())
-        if (isShowThreadInfo) stringBuffer.append("\n").append(ThreadFactory(Thread.currentThread()).printThreadInfo())
-        stringBuffer.append("\n").append("===========================================================start=======================================================================")
-        if (isFormatJson) stringBuffer.append("\n").append(JsonFactory(msg).printJson()) else stringBuffer.append("\n").append(msg)
-        stringBuffer.append("\n").append("============================================================end========================================================================")
-        return stringBuffer.toString()
+        return handle(msg)
     }
 
     override fun e(msg: String): String {
-        val stringBuffer = StringBuilder(ClassUtils.getClass())
+        return handle(msg)
+    }
+
+    private fun handle(msg: String): String {
+        val stringBuffer = StringBuilder("日志内容")
+        stringBuffer.append("\n").append("======class======")
+        ClassUtils.getClass().forEach {
+            stringBuffer.append("\n").append(it)
+        }
         if (isShowThreadInfo) stringBuffer.append("\n").append(ThreadFactory(Thread.currentThread()).printThreadInfo())
         stringBuffer.append("\n").append("===========================================================start=======================================================================")
         if (isFormatJson) stringBuffer.append("\n").append(JsonFactory(msg).printJson()) else stringBuffer.append("\n").append(msg)

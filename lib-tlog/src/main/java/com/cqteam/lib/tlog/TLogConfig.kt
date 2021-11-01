@@ -1,7 +1,6 @@
 package com.cqteam.lib.tlog
 
-import com.cqteam.lib.tlog.handle.DefaultTLogHandle
-import com.cqteam.lib.tlog.handle.TLogHandle
+import com.cqteam.lib.tlog.claz.ClassUtils
 
 /**
  * Author： 洪亮
@@ -59,8 +58,19 @@ class TLogConfig(
             return this
         }
 
+        /**
+         *  配置是否显示线程信息
+         */
         fun showThreadInfo(boolean: Boolean = false): Builder {
             isShowThreadInfo = boolean
+            return this
+        }
+
+        /**
+         *  设置需要定位的 PackageName
+         */
+        fun setPackageNames(vararg packageNames: String): Builder {
+            ClassUtils.setPackageNames(packageNames)
             return this
         }
 

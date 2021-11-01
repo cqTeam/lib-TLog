@@ -10,4 +10,5 @@ package com.cqteam.lib.tlog
 object Common {
     const val TLogTag = "TLog"
     const val TLogExceptionTag = "TLog-Exception"
+    const val PackageName = "com.cqteam.lib.tlog"
 }

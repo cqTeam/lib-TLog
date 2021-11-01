@@ -13,10 +13,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        TLog.i(jsonString)
+//        TLog.e("测试")
 
         Thread(Runnable {
-            TLog.e("子线程")
+            TLog.d(jsonString)
         }).start()
     }
 }
