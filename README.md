@@ -1,10 +1,27 @@
 # lib-TLog
-日志框架
+日志框架 [![](https://jitpack.io/v/cqTeam/lib-TLog.svg)](https://jitpack.io/#cqTeam/lib-TLog)
 ## 简介
 ### 功能
 - 日志定位
 - 展示该日志调用者的线程信息
 - 支持Json字符串格式化
+
+### 配置
+1. 在Project的 `build.gradle`中添加 jitpack 地址
+```
+allprojects {
+   repositories {
+     ...
+     maven { url 'https://jitpack.io' }
+   }
+}
+```
+2. 添加依赖
+```
+dependencies {
+    implementation 'com.github.cqTeam:lib-TLog:Tag'
+}
+```
 
 ### 使用
 #### 在 Application 中配置
@@ -22,8 +39,8 @@ val tlogConfig = TLogConfig.Builder()
 
 #### 调用
 ```
-TLog.i("测试") // 日志的
-TLog.i("测试","allTag")
+TLog.i("测试") // 日志的tag为全局配置的tag
+TLog.i("测试","allTag") // 日志的tag为 allTag
 ```
 
 #### 注意
