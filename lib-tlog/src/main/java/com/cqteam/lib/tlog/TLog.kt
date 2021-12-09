@@ -17,6 +17,7 @@ class TLog {
 
         private var tLogHandle: TLogHandle
         private var globalTag: String = Common.TLogTag
+        private var isDebug: Boolean = true
 
         init {
             tLogHandle = DefaultTLogHandle(isFormatJson = false, isShowThreadInfo = false)
@@ -25,22 +26,23 @@ class TLog {
         fun addConfig(tLogConfig: TLogConfig) {
             tLogHandle = DefaultTLogHandle(isFormatJson = tLogConfig.getIsFormatJson(), isShowThreadInfo = tLogConfig.getIsShowThreadInfo())
             globalTag = tLogConfig.getGlobTag()
+            isDebug = tLogConfig.getIsDebug()
         }
 
         fun i(msg: String, tag: String = globalTag) {
-            Log.i(tag, tLogHandle.i(msg))
+            if (isDebug) Log.i(tag, tLogHandle.i(msg))
         }
 
         fun d(msg: String, tag: String = globalTag) {
-            Log.d(tag, tLogHandle.d(msg))
+            if (isDebug) Log.d(tag, tLogHandle.d(msg))
         }
 
         fun w(msg: String, tag: String = globalTag) {
-            Log.w(tag, tLogHandle.w(msg))
+            if (isDebug) Log.w(tag, tLogHandle.w(msg))
         }
 
         fun e(msg: String, tag: String = globalTag) {
-            Log.e(tag, tLogHandle.e(msg))
+            if (isDebug) Log.e(tag, tLogHandle.e(msg))
         }
 
     }

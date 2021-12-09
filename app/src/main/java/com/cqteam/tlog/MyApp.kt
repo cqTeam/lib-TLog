@@ -16,7 +16,7 @@ class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
         TLog.addConfig(
-            TLogConfig.Builder().formatJson(true).showThreadInfo(true).setPackageNames("com.cqteam.tlog").build()
+            TLogConfig.Builder().isDebug(true).formatJson(true).showThreadInfo(true).setPackageNames("com.cqteam.tlog").build()
         )
     }
 }

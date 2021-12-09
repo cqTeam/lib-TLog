@@ -15,6 +15,7 @@ class TLogConfig(
     private val globTag: String,
     private val isFormatJson: Boolean,
     private val isShowThreadInfo: Boolean,
+    private val isDebug: Boolean,
 ) {
 
     fun getGlobTag(): String {
@@ -29,6 +30,10 @@ class TLogConfig(
         return isShowThreadInfo
     }
 
+    fun getIsDebug(): Boolean {
+        return isDebug
+    }
+
     /* 静态内部类 */
     class Builder {
 
@@ -41,11 +46,19 @@ class TLogConfig(
         // true：输出线程信息；false：不输出线程消息
         private var isShowThreadInfo: Boolean = false
 
+        // true: Debug模式；false：发布版本模式
+        private var isDebug: Boolean = true
+
         /**
          *  设置全局 Tag
          */
         fun tag(globTag: String): Builder {
             this.globTag = globTag
+            return this
+        }
+
+        fun isDebug(boolean: Boolean = true): Builder {
+            this.isDebug = boolean
             return this
         }
 
@@ -81,7 +94,7 @@ class TLogConfig(
             if (globTag == null) {
                 globTag = Common.TLogTag
             }
-            return TLogConfig(globTag!!,isFormatJson,isShowThreadInfo)
+            return TLogConfig(globTag!!,isFormatJson,isShowThreadInfo,isDebug)
         }
     }
 }
