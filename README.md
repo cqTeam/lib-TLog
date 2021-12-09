@@ -28,6 +28,7 @@ dependencies {
 ```
 // 1. 创建日志配置器 TLogConfig
 val tlogConfig = TLogConfig.Builder()
+            .isDebug(false) // Debug模式下才打印日志，默认是true；设置为false，就不会打印日志信息
             .formatJson(true) // 是否格式化Json字符串，默认false
             .showThreadInfo(true) // 是否展示线程信息，默认false
             .tag("TLog") // 全局Log的tag
